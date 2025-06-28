@@ -1,12 +1,13 @@
 import React from 'react';
 
-function FormInput({field, onChange}) {
+function FormInput({field, value, onChange}) {
     switch(field.type) {
         case 'text':
             return(
                 <input
                     type="text"
                     name={field.name}
+                    value={value}
                     required={field.required}
                     maxLength={field.maxLength}
                     onChange={onChange}
@@ -17,6 +18,7 @@ function FormInput({field, onChange}) {
                 <input
                     type="number"
                     name={field.name}
+                    value={value}
                     required={field.required}
                     min={field.minValue}
                     max={field.maxValue}

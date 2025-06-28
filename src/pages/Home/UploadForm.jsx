@@ -5,16 +5,29 @@ function UploadForm({fields, onSubmit}) {
     const [formData, setFormData] = useState({});
 
     const handleChange = (e) => {
-        setFormData((prev) => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }));
-        console.log("Form Data:", formData);
+        const { name, type, files, value } = e.target;
+
+        if (type === "file") {
+            const file = files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                setFormData((prev) => ({
+                    ...prev,
+                    [name]: url
+                }));
+            }
+        } else {
+            setFormData((prev) => ({
+                ...prev,
+                [name]: value
+            }));
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (onSubmit) onSubmit(formData);
+        setFormData({})
     };
 
     return (
@@ -24,7 +37,11 @@ function UploadForm({fields, onSubmit}) {
                     <div key={field.name} style={{marginBottom: '1rem'}}>
                         <label>{field.label}</label>
                         <br/>
-                        <FormInput field={field} onChange={handleChange}/>
+                        <FormInput
+                            field={field}
+                            value={formData[field.name] || ''}
+                            onChange={handleChange}
+                        />
                     </div>
                 ))}
                 <button type="submit">Tạo sản phẩm</button>

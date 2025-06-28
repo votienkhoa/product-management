@@ -6,7 +6,7 @@ import ProductGrid from "./ProductGrid.jsx";
 
 const API_URL = 'https://hiring-test.stag.tekoapis.net/api/products/management';
 
-function Home(props) {
+function Home() {
     const [title, setTitle] = useState("")
     const [form, setForm] = useState([])
     const [button, setButton] = useState("")
@@ -35,7 +35,7 @@ function Home(props) {
         const newProduct = {
             name: formData.productName,
             price: Number(formData.price),
-            image: formData.image
+            image: formData.imageUrl
         };
         setProductList((prev) => [newProduct, ...prev]);
     };
