@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FormInput(field) {
+function FormInput({field, onChange}) {
     switch(field.type) {
         case 'text':
             return(
@@ -9,6 +9,7 @@ function FormInput(field) {
                     name={field.name}
                     required={field.required}
                     maxLength={field.maxLength}
+                    onChange={onChange}
                 />
             )
         case 'number':
@@ -19,6 +20,7 @@ function FormInput(field) {
                     required={field.required}
                     min={field.minValue}
                     max={field.maxValue}
+                    onChange={onChange}
                 />
             )
         case 'file_upload':
@@ -26,10 +28,11 @@ function FormInput(field) {
                 <input
                     type="file"
                     name={field.name}
+                    onChange={onChange}
                 />
             )
         default:
-            return <input type="text" name={field.name}/>;
+            return <input type="text" name={field.name} onChange={onChange} />;
     }
 }
 

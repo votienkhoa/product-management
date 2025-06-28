@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import {parseApiData} from '../../utils/parseApiData';
+import UploadForm from "./UploadForm.jsx";
+import ProductGrid from "./ProductGrid.jsx";
 
 const API_URL = 'https://hiring-test.stag.tekoapis.net/api/products/management';
 
@@ -28,9 +30,21 @@ function Home(props) {
             })
     }, []);
 
+    const handleCreateProduct = (formData) => {
+        console.log("Form Data:", formData);
+        const newProduct = {
+            name: formData.productName,
+            price: Number(formData.price),
+            image: formData.image
+        };
+        setProductList((prev) => [newProduct, ...prev]);
+    };
+
     return (
         <div>
             <h2>{title}</h2>
+            <UploadForm fields={form} onSubmit={handleCreateProduct}/>
+            <ProductGrid productList={productList}/>
         </div>
     );
 }
