@@ -1,18 +1,22 @@
-import React from 'react';
+import styled from "@emotion/styled";
 import ProductCard from "../../components/ProductCard.jsx";
+
+const ProductGridWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+`
 
 function ProductGrid({productList}) {
     return (
-        <>
-            <h2>Danh sách sản phẩm</h2>
+        <ProductGridWrapper>
             {productList.length === 0 ? (
-                <p>Chưa có sản phẩm.</p>
+                <p>No product to display</p>
             ) : (
                 productList.map((product, index) => (
                     <ProductCard key={index} product={product} />
                 ))
             )}
-        </>
+        </ProductGridWrapper>
     );
 }
 

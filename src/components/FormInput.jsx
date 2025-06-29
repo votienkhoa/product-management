@@ -1,10 +1,17 @@
 import React from 'react';
+import FileUpload from "./FileUpload.jsx";
+import styled from "@emotion/styled";
+
+const StyledInput = styled.input`
+    border-radius: 5px;
+    border: 1px solid #ccc;
+`
 
 function FormInput({field, value, onChange}) {
     switch(field.type) {
         case 'text':
             return(
-                <input
+                <StyledInput
                     type="text"
                     name={field.name}
                     value={value}
@@ -15,7 +22,7 @@ function FormInput({field, value, onChange}) {
             )
         case 'number':
             return(
-                <input
+                <StyledInput
                     type="number"
                     name={field.name}
                     value={value}
@@ -27,8 +34,7 @@ function FormInput({field, value, onChange}) {
             )
         case 'file_upload':
             return(
-                <input
-                    type="file"
+                <FileUpload
                     name={field.name}
                     onChange={onChange}
                 />

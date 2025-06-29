@@ -3,6 +3,7 @@ import axios from 'axios'
 import {parseApiData} from '../../utils/parseApiData';
 import UploadForm from "./UploadForm.jsx";
 import ProductGrid from "./ProductGrid.jsx";
+import FormTitle from "../../components/FormTitle.jsx";
 
 const API_URL = 'https://hiring-test.stag.tekoapis.net/api/products/management';
 
@@ -42,8 +43,8 @@ function Home() {
 
     return (
         <div>
-            <h2>{title}</h2>
-            <UploadForm fields={form} onSubmit={handleCreateProduct}/>
+            <FormTitle title={title} />
+            <UploadForm fields={form} onSubmit={handleCreateProduct} button={button}/>
             <ProductGrid productList={productList}/>
         </div>
     );
